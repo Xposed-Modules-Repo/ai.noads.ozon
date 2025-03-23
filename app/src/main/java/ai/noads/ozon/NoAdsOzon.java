@@ -67,7 +67,9 @@ public class NoAdsOzon implements IXposedHookLoadPackage {
             XposedBridge.hookAllConstructors(ProductVO, new XC_MethodHook() {
                 @Override
                 protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-                    param.setResult(null);
+                    if (param.args[1].toString().equals("GRID3")) {
+                        param.setResult(null);
+                    }
                 }
             });
 
